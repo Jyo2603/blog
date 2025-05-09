@@ -7,18 +7,10 @@ on:
                # Trigger on push to any feature branch
   pull_request:
     branches:
-      - tanu         # Trigger on pull requests to 'main' branch
+      - tanu    # Trigger on pull requests to 'main' branch
 
 jobs:
   install-dependencies:
-    runs-on: ubuntu-latest
-    steps:
-      # Step 1: Checkout code
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-  # Install dependencies for root and frontend
-  install:
     runs-on: ubuntu-latest
     steps:
       # Checkout code
@@ -26,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       # Install dependencies in the root directory (blog)
-      - name: Install dependencies in the root directory (blog)
+      - name: Install dependencies in root directory (blog)
         working-directory: ./  # root folder (blog)
         run: |
           npm install
@@ -37,7 +29,6 @@ jobs:
         run: |
           npm install
 
-  # Lint the code for both root and frontend
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -57,7 +48,6 @@ jobs:
         run: |
           npm run lint         # Assuming frontend package.json has a lint script
 
-  # Build both root and frontend
   build:
     runs-on: ubuntu-latest
     steps:
@@ -77,7 +67,6 @@ jobs:
         run: |
           npm run build         # Assuming frontend package.json has a build script
 
-  # Run tests for both root and frontend
   test:
     runs-on: ubuntu-latest
     steps:
