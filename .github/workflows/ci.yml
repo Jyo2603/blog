@@ -23,10 +23,6 @@ jobs:
         working-directory: my-app
         run: npm run build
 
-      - name: Run the project
-        working-directory: my-app
-        run: npm run dev
-
       - name: Run tests
         working-directory: my-app
         run: npm test
