@@ -10,23 +10,16 @@ on:
       - tanu   # Trigger on pull requests to 'main' branch
 
 jobs:
-  install-dependencies:
+  test :
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
-      - name: Verify root folder content
-        run: ls -al
-      # Add Git safe directory configuration
-      - name: Set up Git to recognize safe directory
-        run: git config --global --add safe.directory /home/runner/work
-
-      # Install dependencies for the root package (blog/package.json)
-      - name: Install dependencies in the root folder (blog)
-        working-directory: ./  # This will point to the root directory of the repo
-        run: |
-          npm install
+      - run: npm ci
+      - run: npm test
+      - run: npm install
+      - run: npm run build
 
       # Install dependencies for the frontend (my-app/package.json)
       - name: Install dependencies in the frontend (my-app)
