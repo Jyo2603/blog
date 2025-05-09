@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Frontend Code
         uses: actions/checkout@v3
         with:
-          path: frontend
+          path: my-app  # Changed 'blog' to 'my-app'
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -24,20 +24,20 @@ jobs:
 
       - name: Install Frontend Dependencies
         run: |
-          cd frontend
+          cd my-app    # Changed 'blog' to 'my-app'
           npm install
 
       - name: Lint Frontend Code
         run: |
-          cd frontend
+          cd my-app    # Changed 'blog' to 'my-app'
           npm run lint
 
       - name: Build Frontend App
         run: |
-          cd frontend
+          cd my-app    # Changed 'blog' to 'my-app'
           npm run build
 
       - name: Run Frontend Tests
         run: |
-          cd frontend
+          cd my-app    # Changed 'blog' to 'my-app'
           npm test
