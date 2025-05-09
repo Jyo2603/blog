@@ -3,20 +3,22 @@ name: CI Workflow
 on:
   push:
     branches:
-      - tanu          # Trigger on push to 'main' branch
-               # Trigger on push to any feature branch
+      - tanu
   pull_request:
     branches:
-      - tanu   # Trigger on pull requests to 'main' branch
+      - tanu
 
 jobs:
-  test :
+  test:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
-      - run: npm ci
-      
-      - run: npm install
-     
+
+      - name: Install dependencies with npm ci
+        working-directory: my-app
+        run: npm ci
+
+      - name: Install other missing dependencies (if needed)
+        working-directory: my-app
+        run: npm install
