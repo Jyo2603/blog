@@ -16,7 +16,8 @@ jobs:
       # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
-
+      - name: Verify root folder content
+        run: ls -al
       # Add Git safe directory configuration
       - name: Set up Git to recognize safe directory
         run: git config --global --add safe.directory /home/runner/work
