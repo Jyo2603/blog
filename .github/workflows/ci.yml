@@ -1,43 +1,97 @@
-name: Full-Stack CI
+name: CI Workflow
 
 on:
   push:
     branches:
-      - tanu
+      - tanu   # Trigger on push to any feature branch
   pull_request:
     branches:
-      - tanu
+      - tanu          # Trigger on pull requests to 'main' branch
 
 jobs:
-  frontend:
+  install-dependencies:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Frontend Code
+      # Step 1: Checkout code
+      - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          path: my-app  # Changed 'blog' to 'my-app'
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
+  # Install dependencies for root and frontend
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Install Frontend Dependencies
+      # Install dependencies in root (blog directory)
+      - name: Install dependencies in the root
+        working-directory: .  # root folder
         run: |
-          cd my-app    # Changed 'blog' to 'my-app'
           npm install
 
-      - name: Lint Frontend Code
+      # Install dependencies in frontend (my-app)
+      - name: Install dependencies in frontend (my-app)
+        working-directory: ./my-app  # frontend folder
         run: |
-          cd my-app    # Changed 'blog' to 'my-app'
-          npm run lint
+          npm install
 
-      - name: Build Frontend App
-        run: |
-          cd my-app    # Changed 'blog' to 'my-app'
-          npm run build
+  # Lint the code for both root and frontend
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Run Frontend Tests
+      # Run linting in root directory
+      - name: Lint root directory code
+        working-directory: .  # root folder
         run: |
-          cd my-app    # Changed 'blog' to 'my-app'
-          npm test
+          npm run lint         # Assuming root package.json has a lint script
+
+      # Run linting in frontend directory
+      - name: Lint frontend code
+        working-directory: ./my-app  # frontend folder
+        run: |
+          npm run lint         # Assuming frontend package.json has a lint script
+
+  # Build both root and frontend
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Build root (if applicable)
+      - name: Build root project
+        working-directory: .  # root folder
+        run: |
+          npm run build         # Assuming root package.json has a build script
+
+      # Build frontend
+      - name: Build frontend
+        working-directory: ./my-app   # frontend folder
+        run: |
+          npm run build         # Assuming frontend package.json has a build script
+
+  # Run tests for both root and frontend
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Run tests for root (if applicable)
+      - name: Run tests for root
+        working-directory: .  # root folder
+        run: |
+          npm test              # Assuming root package.json has a test script
+
+      # Run tests for frontend
+      - name: Run tests for frontend
+        working-directory: ./my-app   # frontend folder
+        run: |
+          npm test              # Assuming frontend package.json has a test script
