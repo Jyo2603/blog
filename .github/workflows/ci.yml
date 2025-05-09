@@ -3,10 +3,10 @@ name: Full-Stack CI
 on:
   push:
     branches:
-      - main
+      - tanu
   pull_request:
     branches:
-      - main
+      - tanu
 
 jobs:
   frontend:
