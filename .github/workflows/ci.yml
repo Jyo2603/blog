@@ -3,7 +3,8 @@ name: CI Workflow
 on:
   push:
     branches:
-      - tanu   # Trigger on push to any feature branch
+      - tanu          # Trigger on push to 'main' branch
+               # Trigger on push to any feature branch
   pull_request:
     branches:
       - tanu          # Trigger on pull requests to 'main' branch
@@ -24,9 +25,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Install dependencies in root (blog directory)
-      - name: Install dependencies in the root
-        working-directory: .  # root folder
+      # Install dependencies in the root directory (blog)
+      - name: Install dependencies in the root directory
+        working-directory: ./  # root folder
         run: |
           npm install
 
@@ -44,13 +45,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Run linting in root directory
+      # Run linting in root directory (blog)
       - name: Lint root directory code
-        working-directory: .  # root folder
+        working-directory: ./  # root folder
         run: |
           npm run lint         # Assuming root package.json has a lint script
 
-      # Run linting in frontend directory
+      # Run linting in frontend directory (my-app)
       - name: Lint frontend code
         working-directory: ./my-app  # frontend folder
         run: |
@@ -64,14 +65,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Build root (if applicable)
+      # Build root project (blog)
       - name: Build root project
-        working-directory: .  # root folder
+        working-directory: ./  # root folder
         run: |
           npm run build         # Assuming root package.json has a build script
 
-      # Build frontend
-      - name: Build frontend
+      # Build frontend project (my-app)
+      - name: Build frontend project
         working-directory: ./my-app   # frontend folder
         run: |
           npm run build         # Assuming frontend package.json has a build script
@@ -84,14 +85,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Run tests for root (if applicable)
+      # Run tests for root project (blog)
       - name: Run tests for root
-        working-directory: .  # root folder
+        working-directory: ./  # root folder
         run: |
           npm test              # Assuming root package.json has a test script
 
-      # Run tests for frontend
+      # Run tests for frontend project (my-app)
       - name: Run tests for frontend
-        working-directory: ./my-app   # frontend folder
+        working-directory: ./my-app  # frontend folder
         run: |
           npm test              # Assuming frontend package.json has a test script
