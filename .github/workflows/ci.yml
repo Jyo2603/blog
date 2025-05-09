@@ -3,85 +3,89 @@ name: CI Workflow
 on:
   push:
     branches:
-      - tanu        # Trigger on push to 'main' branch
+      - tanu          # Trigger on push to 'main' branch
                # Trigger on push to any feature branch
   pull_request:
     branches:
-      - tanu    # Trigger on pull requests to 'main' branch
+      - tanu   # Trigger on pull requests to 'main' branch
 
 jobs:
   install-dependencies:
     runs-on: ubuntu-latest
     steps:
-      # Checkout code
+      # Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Install dependencies in the root directory (blog)
-      - name: Install dependencies in root directory (blog)
-        working-directory: ./  # root folder (blog)
+      # Add Git safe directory configuration
+      - name: Set up Git to recognize safe directory
+        run: git config --global --add safe.directory /home/runner/work/blog
+
+      # Install dependencies for the root package (blog/package.json)
+      - name: Install dependencies in the root folder (blog)
+        working-directory: ./  # This will point to the root directory of the repo
         run: |
           npm install
 
-      # Install dependencies in frontend (my-app)
-      - name: Install dependencies in frontend (my-app)
-        working-directory: ./my-app  # frontend folder
+      # Install dependencies for the frontend (my-app/package.json)
+      - name: Install dependencies in the frontend (my-app)
+        working-directory: ./my-app  # This will point to the 'my-app' directory
         run: |
           npm install
 
   lint:
     runs-on: ubuntu-latest
     steps:
-      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Run linting in root directory (blog)
-      - name: Lint root directory code (blog)
-        working-directory: ./  # root folder (blog)
-        run: |
-          npm run lint         # Assuming root package.json has a lint script
+      - name: Set up Git to recognize safe directory
+        run: git config --global --add safe.directory /home/runner/work/blog
 
-      # Run linting in frontend directory (my-app)
-      - name: Lint frontend code (my-app)
-        working-directory: ./my-app  # frontend folder
+      - name: Lint root code (blog)
+        working-directory: ./  # This will point to the root folder (blog)
         run: |
-          npm run lint         # Assuming frontend package.json has a lint script
+          npm run lint
+
+      - name: Lint frontend code (my-app)
+        working-directory: ./my-app  # This will point to the 'my-app' folder
+        run: |
+          npm run lint
 
   build:
     runs-on: ubuntu-latest
     steps:
-      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Build root project (blog)
-      - name: Build root project (blog)
-        working-directory: ./  # root folder (blog)
-        run: |
-          npm run build         # Assuming root package.json has a build script
+      - name: Set up Git to recognize safe directory
+        run: git config --global --add safe.directory /home/runner/work/blog
 
-      # Build frontend project (my-app)
-      - name: Build frontend project (my-app)
-        working-directory: ./my-app   # frontend folder
+      - name: Build root project (blog)
+        working-directory: ./  # This will point to the root folder (blog)
         run: |
-          npm run build         # Assuming frontend package.json has a build script
+          npm run build
+
+      - name: Build frontend project (my-app)
+        working-directory: ./my-app  # This will point to the 'my-app' folder
+        run: |
+          npm run build
 
   test:
     runs-on: ubuntu-latest
     steps:
-      # Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Run tests for root project (blog)
-      - name: Run tests for root (blog)
-        working-directory: ./  # root folder (blog)
-        run: |
-          npm test              # Assuming root package.json has a test script
+      - name: Set up Git to recognize safe directory
+        run: git config --global --add safe.directory /home/runner/work/blog
 
-      # Run tests for frontend project (my-app)
-      - name: Run tests for frontend (my-app)
-        working-directory: ./my-app  # frontend folder
+      - name: Run tests for root (blog)
+        working-directory: ./  # This will point to the root folder (blog)
         run: |
-          npm test              # Assuming frontend package.json has a test script
+          npm test
+
+      - name: Run tests for frontend (my-app)
+        working-directory: ./my-app  # This will point to the 'my-app' folder
+        run: |
+          npm test
