@@ -25,7 +25,7 @@ jobs:
 
       - name: Run the project
         working-directory: my-app
-        run: npm start
+        run: npm run dev
 
       - name: Run tests
         working-directory: my-app
