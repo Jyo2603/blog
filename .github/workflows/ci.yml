@@ -19,7 +19,7 @@ jobs:
 
       # Add Git safe directory configuration
       - name: Set up Git to recognize safe directory
-        run: git config --global --add safe.directory /home/runner/work/blog
+        run: git config --global --add safe.directory /home/runner/work
 
       # Install dependencies for the root package (blog/package.json)
       - name: Install dependencies in the root folder (blog)
@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Git to recognize safe directory
-        run: git config --global --add safe.directory /home/runner/work/blog
+        run: git config --global --add safe.directory /home/runner/work
 
       - name: Lint root code (blog)
         working-directory: ./  # This will point to the root folder (blog)
@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Git to recognize safe directory
-        run: git config --global --add safe.directory /home/runner/work/blog
+        run: git config --global --add safe.directory /home/runner/work
 
       - name: Build root project (blog)
         working-directory: ./  # This will point to the root folder (blog)
@@ -78,7 +78,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Git to recognize safe directory
-        run: git config --global --add safe.directory /home/runner/work/blog
+        run: git config --global --add safe.directory /home/runner/work
 
       - name: Run tests for root (blog)
         working-directory: ./  # This will point to the root folder (blog)
