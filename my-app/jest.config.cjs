@@ -1,11 +1,22 @@
 module.exports = {
   preset: 'ts-jest',
-  testEnvironment: 'jsdom',  // Use jsdom test environment for browser-like tests
-  moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'  // Mock CSS imports to avoid errors in tests
-  },
+  testEnvironment: 'jsdom',
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'  // Transform .ts/.tsx files using ts-jest
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
+      tsconfig: {
+        jsx: 'react-jsx',
+        esModuleInterop: true,
+        module: 'ESNext',
+        target: 'ESNext',
+        
+        types: ["@testing-library/react", "@testing-library/jest-dom"]
+      }
+    }]
   },
-  setupFilesAfterEnv: ['/workspaces/blog/my-app/src/setupTest.ts'],  // Adjust path to the correct file
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testMatch: ['**/?(*.)+(test).ts?(x)'],
+  setupFilesAfterEnv: ['./src/setupTest.ts']
 };
