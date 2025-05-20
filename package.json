@@ -6,9 +6,15 @@
     "build": "concurrently \"npm run build --workspace frontend\" \"npm run build --workspace backend\"",
     "lint": "concurrently \"npm run lint --workspace frontend\" \"npm run lint --workspace backend\"",
     "test": "concurrently \"npm run test --workspace frontend\" \"npm run test --workspace backend\""
+    
   },
   "dependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^7.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -23,5 +29,22 @@
   },
   "workspaces": [
     "frontend"
-  ]
+  ],
+
+  "description": "",
+  "main": "index.js",
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Catnip-01/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Catnip-01/blog/issues"
+  },
+  "homepage": "https://github.com/Catnip-01/blog#readme"
+  
 }
