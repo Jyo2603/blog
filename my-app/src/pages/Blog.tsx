@@ -1,6 +1,6 @@
 // pages/Blog.tsx
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link for routing
+//import React from 'react';
+//import { Link } from 'react-router-dom'; // Import Link for routing
 import Header from '../components/header'; // Import your Header component
 import BlogCard from '../components/blogcard'; // Import the BlogCard component
 

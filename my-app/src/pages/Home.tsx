@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedPlatform, setSelectedPlatform] = useState('');
 
