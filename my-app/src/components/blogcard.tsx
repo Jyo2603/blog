@@ -2,8 +2,13 @@
 import React from "react";
 
 interface BlogCardProps {
-    title: string;
-    description: string;
+  title: string;
+  description: string;
+  author: string;       // ✅ Must be here
+  date: string;
+  readTime: string;
+  views: number;
+  comments: number;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ title, description }) => {

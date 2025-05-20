@@ -1,6 +1,3 @@
-// pages/Blog.tsx
-//import React from 'react';
-//import { Link } from 'react-router-dom'; // Import Link for routing
 import Header from '../components/header'; // Import your Header component
 import BlogCard from '../components/blogcard'; // Import the BlogCard component
 
@@ -42,7 +39,7 @@ const Blog = () => {
         <h1 className="text-3xl sm:text-4xl font-bold mb-8 text-center">All Posts</h1>
         <div className="space-y-6">
           {blogData.map((blog, idx) => (
-            <BlogCard // Use the BlogCard component here
+            <BlogCard
               key={idx}
               title={blog.title}
               description={blog.description}
