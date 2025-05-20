@@ -5,7 +5,10 @@
     { "path": "./tsconfig.node.json" }
 
   ],
+    
   "compilerOptions": {
-    "types": ["node", "jest"]
+    "types": ["node", "@types/jest"]
+
+
 }}
 

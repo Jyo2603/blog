@@ -1,4 +1,5 @@
 module.exports = {
+
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   transform: {
@@ -13,6 +14,7 @@ module.exports = {
       }
     }]
   },
+  
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy'
   },
