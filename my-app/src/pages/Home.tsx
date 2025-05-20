@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import '/workspaces/blog/my-app/src/index.css';
+import '../index.css';
 //import { useNavigate } from 'react-router-dom';
 
 import { Link } from "react-router-dom";
