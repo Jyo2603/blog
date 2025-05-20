@@ -1,7 +1,7 @@
 // components/Header.tsx
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import '/my-app/src/index.css';
+import '../index.css';
 
 const Header: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
